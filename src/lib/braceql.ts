@@ -53,15 +53,15 @@ export function splitStatements(src: string): string[] {
   const re = /([A-Za-z ]+?)\s*\{([^}]*)\}/g;
   let m;
   while ((m = re.exec(src))) out.push(m[0]);
-  return ret;
+  return out;
 }
 
 export function execute(db: DB, stmt: string): Result {
   try {
     const m = stmt.trim().match(/^([A-Za-z ]+?)\s*\{([^}]*)\}$/);
     if (!m) throw new Error("Syntax: COMMAND {key: value;}");
-    const cmd = m[1].trim().toUpperCase().replace(/\s+/g, " ");
-    const b = parseBody(m[2]);
+    const cmd = (m[1] ?? "").trim().toUpperCase().replace(/\s+/g, " ");
+    const b = parseBody(m[2] ?? "");
     switch (cmd) {
       case "CREATE TABLE": {
         if (!b.name) throw new Error("Missing name");
@@ -72,7 +72,7 @@ export function execute(db: DB, stmt: string): Result {
       }
       case "DROP TABLE": {
         getTable(db, b.name);
-        delete db.tables[b.name];
+        delete db.tables[b.name as string];
         return { ok: true, message: `Table "${b.name}" dropped` };
       }
       case "INSERT INTO": {
