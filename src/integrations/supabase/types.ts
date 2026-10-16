@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      databases: {
+        Row: {
+          api_key: string
+          created_at: string
+          data: Json
+          id: string
+          name: string
+          owner_id: string
+          updated_at: string
+        }
+        Insert: {
+          api_key?: string
+          created_at?: string
+          data?: Json
+          id?: string
+          name?: string
+          owner_id: string
+          updated_at?: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string
+          data?: Json
+          id?: string
+          name?: string
+          owner_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
