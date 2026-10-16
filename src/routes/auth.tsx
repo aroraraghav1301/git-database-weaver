@@ -63,7 +63,7 @@ function AuthPage() {
         <input required type="password" minLength={6} placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} className="field" />
         <button disabled={busy} className="btn-primary w-full">{busy ? "..." : mode === "in" ? "Sign in" : "Create account"}</button>
         {msg && <p className={`text-xs ${msg.ok ? "text-primary" : "text-destructive"}`}>{msg.text}</p>}
-        <Link to="/" search={{ guest: true }} className="block text-center text-xs text-muted-foreground hover:text-primary">
+        <Link to="/" className="block text-center text-xs text-muted-foreground hover:text-primary">
           Continue as guest (saved in this browser only) →
         </Link>
       </form>
