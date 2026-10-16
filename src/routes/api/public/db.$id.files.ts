@@ -25,7 +25,7 @@ export const Route = createFileRoute("/api/public/db/$id/files")({
         const file = form?.get("file");
         if (!(file instanceof File)) return json({ error: 'Send multipart form-data with a "file" field' }, 400);
         const name = file.name.replace(/[^\w.\-]/g, "_").slice(0, 150);
-        const { error } = await a.admin.storage.from(BUCKET).upload(`${params.id}/${name}`, file, { upsert: true, contentType: file.type || undefined });
+        const { error } = await a.admin.storage.from(BUCKET).upload(`${params.id}/${name}`, file, { upsert: true, contentType: file.type || "application/octet-stream" });
         if (error) return json({ error: error.message }, 400);
         return json({ ok: true, name });
       },

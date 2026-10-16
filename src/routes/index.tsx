@@ -27,7 +27,7 @@ const BUCKET = "brace-files";
 const empty = (): DB => ({ name: "my_database", tables: {} });
 
 type CloudDb = { id: string; name: string; api_key: string; data: { tables?: DB["tables"] } };
-type FileItem = { name: string; size?: number };
+type FileItem = { name: string; size?: number | undefined };
 
 function Index() {
   const [session, setSession] = useState<Session | null>(null);
