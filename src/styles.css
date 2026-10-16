@@ -63,23 +63,23 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
+  --background: oklch(0.16 0.01 160);
+  --foreground: oklch(0.93 0.01 160);
+  --card: oklch(0.2 0.012 160);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.85 0.19 150);
+  --primary-foreground: oklch(0.16 0.01 160);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted-foreground: oklch(0.65 0.02 160);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
+  --border: oklch(0.3 0.015 160);
   --input: oklch(0.929 0.013 255.508);
   --ring: oklch(0.704 0.04 256.788);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -141,4 +141,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@layer components {
+  .panel { @apply bg-card border border-border rounded-lg overflow-hidden; }
+  .panel-head { @apply flex items-center justify-between gap-3 px-4 py-2 border-b border-border text-sm; }
+  .btn-primary { @apply bg-primary text-primary-foreground px-3 py-1.5 rounded text-sm font-bold hover:opacity-90 transition; }
+  .btn-ghost { @apply border border-border px-3 py-1.5 rounded text-sm hover:border-primary hover:text-primary transition; }
 }
