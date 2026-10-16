@@ -12,8 +12,10 @@ function parseValue(v: string): string | number | boolean | null {
   return t;
 }
 
-function parseBody(body: string): Record<string, string> {
+type Body = { name?: string; table?: string; columns?: string; values?: string; where?: string; set?: string; limit?: string };
+function parseBody(body: string): Body {
   const out: Record<string, string> = {};
+  const ret = out as Body;
   body
     .split(";")
     .map((s) => s.trim())
@@ -23,7 +25,7 @@ function parseBody(body: string): Record<string, string> {
       if (i === -1) throw new Error(`Expected "key: value" but got "${part}"`);
       out[part.slice(0, i).trim().toLowerCase()] = part.slice(i + 1).trim();
     });
-  return out;
+  return ret;
 }
 
 function pairs(s: string | undefined): Row {
@@ -51,7 +53,7 @@ export function splitStatements(src: string): string[] {
   const re = /([A-Za-z ]+?)\s*\{([^}]*)\}/g;
   let m;
   while ((m = re.exec(src))) out.push(m[0]);
-  return out;
+  return ret;
 }
 
 export function execute(db: DB, stmt: string): Result {
