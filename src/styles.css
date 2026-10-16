@@ -148,4 +148,5 @@
   .panel-head { @apply flex items-center justify-between gap-3 px-4 py-2 border-b border-border text-sm; }
   .btn-primary { @apply bg-primary text-primary-foreground px-3 py-1.5 rounded text-sm font-bold hover:opacity-90 transition; }
   .btn-ghost { @apply border border-border px-3 py-1.5 rounded text-sm hover:border-primary hover:text-primary transition; }
+  .field { @apply w-full bg-background border border-border rounded px-3 py-2 text-sm outline-none focus:border-primary; }
 }
